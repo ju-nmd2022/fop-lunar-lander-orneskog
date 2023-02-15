@@ -1,6 +1,6 @@
 const x = 300;
 const y = 400;
-const scale = 1;
+const scale = 2;
 
 // Wooden blue wall
 fill(100, 200, 255);
@@ -36,7 +36,7 @@ fill(210, 210, 190);
 stroke(180, 180, 170);
 strokeWeight(1 * scale);
 rect(x - 50 * scale, y - 47 * scale, 40 * scale, 57 * scale);
-rect(x - 52 * scale, y - 49 * scale, 44 * scale, 10 * scale);
+rect(x - 52 * scale, y - 49 * scale, 44 * scale, 7 * scale);
 fill(65, 54, 38);
 stroke(55, 50, 33);
 
