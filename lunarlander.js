@@ -1,6 +1,6 @@
 const x = 200;
 const y = 400;
-const scale = 1;
+const scale = 2;
 
 function decorPorch(x, y, scale) {
   line(x - 100 * scale, y - 60 * scale, x - 0 * scale, y - 60 * scale);
@@ -97,7 +97,7 @@ line(x - 77 * scale, y - 21 * scale, x - 77 * scale, y - 19 * scale);
 // shadows on pink & blue wall
 noStroke();
 fill(0, 0, 0, 30);
-rect(x - 101 * scale, y - 100 * scale, 110 * scale, 5 * scale);
+rect(x - 100 * scale, y - 100 * scale, 110 * scale, 20 * scale);
 fill(0, 0, 0, 30);
 rect(x - 101 * scale, y - 60 * scale, 100 * scale, 15 * scale);
 stroke(0, 0, 0, 30);
@@ -332,3 +332,52 @@ vertex(x + 111 * scale, y + 11 * scale);
 vertex(x + 111 * scale, y + 20 * scale);
 vertex(x + 90 * scale, y + 26 * scale);
 endShape();
+
+// Shadow on green wall
+fill(0, 0, 0, 30);
+noStroke();
+beginShape();
+vertex(x + 0 * scale, y - 56 * scale);
+vertex(x + 30 * scale, y - 48 * scale);
+vertex(x + 85 * scale, y - 48 * scale);
+vertex(x + 115.5 * scale, y - 56 * scale);
+vertex(x + 115 * scale, y - 68 * scale);
+vertex(x + 0 * scale, y - 67 * scale);
+endShape();
+
+// Roof
+fill(40, 40, 40);
+strokeWeight(1 * scale);
+stroke(25, 25, 25);
+beginShape();
+vertex(x - 115 * scale, y - 85 * scale);
+vertex(x - 100 * scale, y - 160 * scale);
+vertex(x + 40 * scale, y - 162 * scale);
+vertex(x + 40 * scale, y - 177 * scale);
+vertex(x + 140 * scale, y - 187 * scale);
+vertex(x + 145 * scale, y - 110 * scale);
+vertex(x + 105 * scale, y - 110 * scale);
+vertex(x + 10 * scale, y - 105 * scale);
+vertex(x + 0 * scale, y - 85 * scale);
+endShape();
+
+// little yellow window "hut"
+fill(230, 210, 130);
+noStroke();
+beginShape();
+vertex(x - 82 * scale, y - 100 * scale);
+vertex(x - 82 * scale, y - 136 * scale);
+vertex(x - 57 * scale, y - 170 * scale);
+vertex(x - 32 * scale, y - 136 * scale);
+vertex(x - 32 * scale, y - 100 * scale);
+endShape();
+stroke(210, 190, 110);
+strokeWeight(1 * scale);
+line(x - 62 * scale, y - 162 * scale, x - 52 * scale, y - 162 * scale);
+line(x - 68 * scale, y - 154 * scale, x - 46 * scale, y - 154 * scale);
+line(x - 74 * scale, y - 146 * scale, x - 40 * scale, y - 146 * scale);
+line(x - 80 * scale, y - 138 * scale, x - 34 * scale, y - 138 * scale);
+line(x - 82 * scale, y - 130 * scale, x - 32 * scale, y - 130 * scale);
+line(x - 82 * scale, y - 122 * scale, x - 32 * scale, y - 122 * scale);
+line(x - 82 * scale, y - 114 * scale, x - 32 * scale, y - 114 * scale);
+line(x - 82 * scale, y - 106 * scale, x - 32 * scale, y - 106 * scale);
