@@ -1,6 +1,6 @@
 const x = 200;
 const y = 400;
-const scale = 2;
+const scale = 1;
 
 function decorPorch(x, y, scale) {
   line(x - 100 * scale, y - 60 * scale, x - 0 * scale, y - 60 * scale);
@@ -381,3 +381,53 @@ line(x - 82 * scale, y - 130 * scale, x - 32 * scale, y - 130 * scale);
 line(x - 82 * scale, y - 122 * scale, x - 32 * scale, y - 122 * scale);
 line(x - 82 * scale, y - 114 * scale, x - 32 * scale, y - 114 * scale);
 line(x - 82 * scale, y - 106 * scale, x - 32 * scale, y - 106 * scale);
+
+// Shadow from "hut" roof
+fill(0, 0, 0, 30);
+noStroke();
+beginShape();
+vertex(x - 80 * scale, y - 130 * scale);
+vertex(x - 88 * scale, y - 130 * scale);
+vertex(x - 57 * scale, y - 175 * scale);
+vertex(x - 57 * scale, y - 165 * scale);
+endShape();
+beginShape();
+vertex(x - 34 * scale, y - 130 * scale);
+vertex(x - 26 * scale, y - 130 * scale);
+vertex(x - 57 * scale, y - 175 * scale);
+vertex(x - 57 * scale, y - 165 * scale);
+endShape();
+
+// roof on yellow "hut"
+fill(100, 200, 255);
+noStroke();
+beginShape();
+vertex(x - 80 * scale, y - 135 * scale);
+vertex(x - 88 * scale, y - 135 * scale);
+vertex(x - 57 * scale, y - 180 * scale);
+vertex(x - 57 * scale, y - 170 * scale);
+endShape();
+beginShape();
+vertex(x - 34 * scale, y - 135 * scale);
+vertex(x - 26 * scale, y - 135 * scale);
+vertex(x - 57 * scale, y - 180 * scale);
+vertex(x - 57 * scale, y - 170 * scale);
+endShape();
+
+// window on yellow wall
+
+fill(210, 210, 190);
+stroke(180, 180, 170);
+strokeWeight(1 * scale);
+rect(x - 70 * scale, y - 145 * scale, 26 * scale, 36 * scale);
+noStroke();
+fill(180, 60, 180);
+rect(x - 67 * scale, y - 143 * scale, 20 * scale, 32 * scale);
+fill(180, 160, 0);
+rect(x - 65 * scale, y - 141 * scale, 16 * scale, 14 * scale);
+rect(x - 65 * scale, y - 125 * scale, 16 * scale, 8 * scale);
+fill(50, 50, 0);
+rect(x - 65 * scale, y - 119 * scale, 16 * scale, 6 * scale);
+stroke(210, 210, 210);
+strokeWeight(1 * scale);
+line(x - 57 * scale, y - 119 * scale, x - 57 * scale, y - 117 * scale);
