@@ -594,4 +594,4 @@ function lunarLander(x, y, scale) {
   ellipse(x + 80 * scale, y - 390 * scale, 30 * scale);
 }
 
-lunarLander(250, 550, 1);
+lunarLander(200, 400, 0.7);
