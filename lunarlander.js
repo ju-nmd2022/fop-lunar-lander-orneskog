@@ -25,6 +25,8 @@ function decorPorch(x, y, scale) {
 }
 
 function lunarLander(x, y, scale) {
+  //  used this drawing of the house to make it: https://www.pngitem.com/middle/hbJbiRm_up-movie-pixar-colorful-rainbow-home-house-balloons/
+
   // Wooden blue wall
   fill(100, 200, 255);
   noStroke();
@@ -594,4 +596,4 @@ function lunarLander(x, y, scale) {
   ellipse(x + 80 * scale, y - 390 * scale, 30 * scale);
 }
 
-lunarLander(200, 400, 0.7);
+lunarLander(200, 400, 0.5);
