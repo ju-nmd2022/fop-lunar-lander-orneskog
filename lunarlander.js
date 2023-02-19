@@ -1,6 +1,17 @@
-const x = 200;
-const y = 500;
-const scale = 1;
+let houseX = 250;
+let houseY = 150;
+const houseScale = 0.3;
+let houseSpeedX = 0;
+let houseSpeedY = 0;
+let houseRotation = 0;
+let houseVelocity = 0.05;
+let houseAcceleration = 0.1;
+let isGameActive = false;
+
+function setup() {
+  createCanvas(500, 300);
+  background(255, 255, 255);
+}
 
 function decorPorch(x, y, scale) {
   line(x - 100 * scale, y - 60 * scale, x - 0 * scale, y - 60 * scale);
@@ -596,4 +607,46 @@ function lunarLander(x, y, scale) {
   ellipse(x + 80 * scale, y - 390 * scale, 30 * scale);
 }
 
-lunarLander(200, 400, 0.5);
+function draw() {
+  background(255, 255, 255);
+  lunarLander(houseX, houseY, houseScale);
+  if (keyIsDown(32)) {
+    isGameActive = true;
+  }
+
+  if (isGameActive) {
+    houseX = houseX + houseSpeedX;
+    houseY = houseY + houseSpeedY;
+    if (keyIsDown(38)) {
+      houseSpeedY = houseAcceleration + houseVelocity;
+      houseVelocity = houseVelocity - houseAcceleration;
+      // if (keyIsDown(37)) {
+      //   houseSpeedX = -1;
+      // } else if (keyIsDown(39)) {
+      //     houseSpeedX = 1;
+      //   } else {
+      //     houseSpeedX = 0;
+      //   }
+    } else if (keyIsDown(40)) {
+      houseSpeedY = 10 + houseVelocity;
+      houseVelocity = houseVelocity + houseAcceleration;
+    } else {
+      houseSpeedY = houseSpeedY + 0.2;
+      houseVelocity = 0.05;
+    }
+    if (keyIsDown(37)) {
+      houseSpeedX = -2;
+    } else if (keyIsDown(39)) {
+      houseSpeedX = 2;
+    } else {
+      houseSpeedX = 0;
+    }
+    if (houseY > 300) {
+      isGameActive = false;
+      houseY = 150;
+      houseX = 250;
+      houseSpeedX = 0;
+      houseSpeedY = 0;
+    }
+  }
+}
