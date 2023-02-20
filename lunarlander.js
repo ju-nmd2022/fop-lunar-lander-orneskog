@@ -1,6 +1,6 @@
 let houseX = 250;
 let houseY = 150;
-const houseScale = 0.3;
+const houseScale = 0.2;
 let houseSpeedX = 0;
 let houseSpeedY = 0;
 let houseRotation = 0;
@@ -9,7 +9,7 @@ let houseAcceleration = 0.1;
 let isGameActive = false;
 
 function setup() {
-  createCanvas(500, 300);
+  createCanvas(500, 500);
   background(255, 255, 255);
 }
 
@@ -607,8 +607,39 @@ function lunarLander(x, y, scale) {
   ellipse(x + 80 * scale, y - 390 * scale, 30 * scale);
 }
 
+function scenery(x, y) {
+  noStroke();
+  // Sky
+  fill(160, 230, 255);
+  rect(x, y, 500, 500);
+  // Ground
+  fill(255, 160, 60);
+  rect(x, y + 450, width, 50);
+  // Little mountain top
+  beginShape();
+  vertex(x + 230, y + 450);
+  vertex(x + 223, y + 400);
+  vertex(x + 220, y + 300);
+  vertex(x + 242, y + 240);
+  vertex(x + 244, y + 260);
+  vertex(x + 240, y + 220);
+  vertex(x + 230, y + 210);
+  vertex(x + 220, y + 207);
+  vertex(x + 210, y + 206);
+  vertex(x + 200, y + 207);
+  vertex(x + 190, y + 210);
+  vertex(x + 180, y + 220);
+  vertex(x + 182, y + 240);
+  vertex(x + 184, y + 244);
+  vertex(x + 186, y + 248);
+  vertex(x + 188, y + 280);
+  vertex(x + 190, y + 450);
+  endShape();
+}
+
 function draw() {
   background(255, 255, 255);
+  scenery(0, 0);
   lunarLander(houseX, houseY, houseScale);
   if (keyIsDown(32)) {
     isGameActive = true;
@@ -620,13 +651,6 @@ function draw() {
     if (keyIsDown(38)) {
       houseSpeedY = houseAcceleration + houseVelocity;
       houseVelocity = houseVelocity - houseAcceleration;
-      // if (keyIsDown(37)) {
-      //   houseSpeedX = -1;
-      // } else if (keyIsDown(39)) {
-      //     houseSpeedX = 1;
-      //   } else {
-      //     houseSpeedX = 0;
-      //   }
     } else if (keyIsDown(40)) {
       houseSpeedY = 10 + houseVelocity;
       houseVelocity = houseVelocity + houseAcceleration;
@@ -641,7 +665,7 @@ function draw() {
     } else {
       houseSpeedX = 0;
     }
-    if (houseY > 300) {
+    if (houseY > 450) {
       isGameActive = false;
       houseY = 150;
       houseX = 250;
