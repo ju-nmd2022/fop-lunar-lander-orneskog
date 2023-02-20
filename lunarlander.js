@@ -1,16 +1,22 @@
-let houseX = 250;
+const x = 100;
+const y = 100;
+const scale = 1.0;
+let houseX = 400;
 let houseY = 150;
-const houseScale = 0.2;
+const houseScale = 0.3;
 let houseSpeedX = 0;
 let houseSpeedY = 0;
 let houseRotation = 0;
 let houseVelocity = 0.05;
 let houseAcceleration = 0.1;
 let isGameActive = false;
+let size = 1;
+let xClouds = [];
+let yClouds = [];
+let scaleClouds = [];
 
 function setup() {
   createCanvas(500, 500);
-  background(255, 255, 255);
 }
 
 function decorPorch(x, y, scale) {
@@ -607,39 +613,91 @@ function lunarLander(x, y, scale) {
   ellipse(x + 80 * scale, y - 390 * scale, 30 * scale);
 }
 
+function cloud(x, y, scale) {
+  fill(255, 255, 255);
+  stroke(0, 0, 0);
+  noStroke();
+  beginShape();
+  vertex(x + 0 * scale, y + 0 * scale);
+  vertex(x + 50 * scale, y + 0 * scale);
+  bezierVertex(
+    x + 70 * scale,
+    y + 0 * scale,
+    x + 70 * scale,
+    y - 20 * scale,
+    x + 50 * scale,
+    y - 20 * scale
+  );
+  bezierVertex(
+    x + 50 * scale,
+    y - 40 * scale,
+    x + 0 * scale,
+    y - 40 * scale,
+    x + 0 * scale,
+    y - 25 * scale
+  );
+  bezierVertex(
+    x + 0 * scale,
+    y - 40 * scale,
+    x - 50 * scale,
+    y - 40 * scale,
+    x - 50 * scale,
+    y - 20 * scale
+  );
+  bezierVertex(
+    x - 70 * scale,
+    y - 20 * scale,
+    x - 70 * scale,
+    y + 0 * scale,
+    x - 50 * scale,
+    y + 0 * scale
+  );
+  vertex(x + 0 * scale, y + 0 * scale);
+
+  endShape();
+}
 function scenery(x, y) {
   noStroke();
-  // Sky
-  fill(160, 230, 255);
-  rect(x, y, 500, 500);
+
   // Ground
   fill(255, 160, 60);
   rect(x, y + 450, width, 50);
   // Little mountain top
   beginShape();
-  vertex(x + 230, y + 450);
-  vertex(x + 223, y + 400);
-  vertex(x + 220, y + 300);
-  vertex(x + 242, y + 240);
-  vertex(x + 244, y + 260);
-  vertex(x + 240, y + 220);
-  vertex(x + 230, y + 210);
-  vertex(x + 220, y + 207);
-  vertex(x + 210, y + 206);
-  vertex(x + 200, y + 207);
-  vertex(x + 190, y + 210);
-  vertex(x + 180, y + 220);
-  vertex(x + 182, y + 240);
-  vertex(x + 184, y + 244);
-  vertex(x + 186, y + 248);
-  vertex(x + 188, y + 280);
-  vertex(x + 190, y + 450);
+  vertex(x + 350, y + 450);
+  vertex(x + 343, y + 400);
+  vertex(x + 350, y + 250);
+  vertex(x + 288, y + 203);
+  vertex(x + 310, y + 450);
+  endShape();
+
+  // Landing mountain
+  beginShape();
+  vertex(x, y + 450);
+  vertex(x, y + 400);
+  vertex(x, y + 210);
+  vertex(x + 238, y + 203);
+  vertex(x + 208, y + 303);
+  vertex(x + 210, y + 450);
   endShape();
 }
 
+for (let i = 0; i < 5; i++) {
+  xCloud = Math.floor(Math.random() * width);
+  yCloud = Math.floor((Math.random() * height) / 2);
+  scaleCloud = Math.ceil(Math.random() * 2);
+  xClouds.push(xCloud);
+  yClouds.push(yCloud);
+  scaleClouds.push(scaleCloud);
+}
+
 function draw() {
-  background(255, 255, 255);
+  background(10, 100, 205);
+  for (let i = 0; i < xClouds.length; i++) {
+    cloud(xClouds[i], yClouds[i], scaleClouds[i]);
+  }
   scenery(0, 0);
+
   lunarLander(houseX, houseY, houseScale);
   if (keyIsDown(32)) {
     isGameActive = true;
@@ -652,7 +710,7 @@ function draw() {
       houseSpeedY = houseAcceleration + houseVelocity;
       houseVelocity = houseVelocity - houseAcceleration;
     } else if (keyIsDown(40)) {
-      houseSpeedY = 10 + houseVelocity;
+      houseSpeedY = 20 + houseVelocity;
       houseVelocity = houseVelocity + houseAcceleration;
     } else {
       houseSpeedY = houseSpeedY + 0.2;
@@ -668,7 +726,7 @@ function draw() {
     if (houseY > 450) {
       isGameActive = false;
       houseY = 150;
-      houseX = 250;
+      houseX = 400;
       houseSpeedX = 0;
       houseSpeedY = 0;
     }
