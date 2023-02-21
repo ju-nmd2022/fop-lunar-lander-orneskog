@@ -699,6 +699,7 @@ function draw() {
   scenery(0, 0);
 
   lunarLander(houseX, houseY, houseScale);
+
   if (keyIsDown(32)) {
     isGameActive = true;
   }
