@@ -692,7 +692,7 @@ for (let i = 0; i < 5; i++) {
 }
 
 function draw() {
-  background(10, 100, 205);
+  background(40, 150, 205);
   for (let i = 0; i < xClouds.length; i++) {
     cloud(xClouds[i], yClouds[i], scaleClouds[i]);
   }
