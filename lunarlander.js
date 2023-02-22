@@ -1,19 +1,20 @@
 const x = 100;
 const y = 100;
 const scale = 1.0;
-let houseX = 400;
-let houseY = 150;
+let houseX = 420;
+let houseY = 450;
 const houseScale = 0.3;
 let houseSpeedX = 0;
 let houseSpeedY = 0;
 let houseRotation = 0;
 let houseVelocity = 0.05;
 let houseAcceleration = 0.1;
-let isGameActive = false;
 let size = 1;
 let xClouds = [];
 let yClouds = [];
 let scaleClouds = [];
+let isGameActive = false;
+let startscreenActive = true;
 
 function setup() {
   createCanvas(500, 500);
@@ -682,6 +683,38 @@ function scenery(x, y) {
   endShape();
 }
 
+function startscreen(x, y) {
+  fill(0, 0, 0, 150);
+  rect(0, 0, width, height);
+  push();
+  translate(0, -100);
+  fill(100, 200, 255);
+  strokeWeight(5);
+  stroke(110, 150, 200);
+  rect(width / 2 - 250, height / 2 - 200, 300, 200);
+  noStroke();
+  fill(60, 100, 150);
+  textSize(20);
+  textFont("Futura");
+  text("Just press and hold", width / 2 - 240, height / 2 - 155);
+  text("to start the game!", width / 2 - 130, height / 2 - 60);
+  textSize(60);
+  fill(205, 110, 10);
+  text("⬆ UP ⬆", width / 2 - 220, height / 2 - 90);
+  textSize(12);
+  text(
+    "Land Carl's house on top of the Paradise Falls!",
+    width / 2 - 230,
+    height / 2 - 30
+  );
+
+  push();
+  rotate(-0.2);
+  lunarLander(width / 2 - 320, height / 2 + 110, 0.5);
+  pop();
+  pop();
+}
+
 for (let i = 0; i < 5; i++) {
   xCloud = Math.floor(Math.random() * width);
   yCloud = Math.floor((Math.random() * height) / 2);
@@ -693,6 +726,7 @@ for (let i = 0; i < 5; i++) {
 
 function draw() {
   background(40, 150, 205);
+
   for (let i = 0; i < xClouds.length; i++) {
     cloud(xClouds[i], yClouds[i], scaleClouds[i]);
   }
@@ -700,13 +734,20 @@ function draw() {
 
   lunarLander(houseX, houseY, houseScale);
 
-  if (keyIsDown(32)) {
-    isGameActive = true;
+  if (startscreenActive) {
+    startscreen(100, 100);
+    if (keyIsDown(38)) {
+      isGameActive = true;
+    }
   }
 
   if (isGameActive) {
     houseX = houseX + houseSpeedX;
     houseY = houseY + houseSpeedY;
+    startscreenActive = false;
+    console.log(isGameActive);
+    console.log(startscreenActive);
+
     if (keyIsDown(38)) {
       houseSpeedY = houseAcceleration + houseVelocity;
       houseVelocity = houseVelocity - houseAcceleration;
@@ -724,12 +765,13 @@ function draw() {
     } else {
       houseSpeedX = 0;
     }
-    if (houseY > 450) {
+    if (houseY > 451) {
       isGameActive = false;
-      houseY = 150;
-      houseX = 400;
+      houseX = 420;
+      houseY = 450;
       houseSpeedX = 0;
       houseSpeedY = 0;
+      startscreenActive = true;
     }
   }
 }
