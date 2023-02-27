@@ -14,7 +14,8 @@ let xClouds = [];
 let yClouds = [];
 let scaleClouds = [];
 let isGameActive = false;
-let startscreenActive = true;
+let startScreenActive = true;
+let losingScreenActive = false;
 
 function setup() {
   createCanvas(500, 500);
@@ -683,36 +684,46 @@ function scenery(x, y) {
   endShape();
 }
 
-function startscreen(x, y) {
+function startScreen(x, y) {
   fill(0, 0, 0, 150);
   rect(0, 0, width, height);
-  push();
-  translate(0, -100);
+
   fill(100, 200, 255);
   strokeWeight(5);
   stroke(110, 150, 200);
-  rect(width / 2 - 250, height / 2 - 200, 300, 200);
+  rect(x, y, 300, 200);
   noStroke();
   fill(60, 100, 150);
   textSize(20);
   textFont("Futura");
-  text("Just press and hold", width / 2 - 240, height / 2 - 155);
-  text("to start the game!", width / 2 - 130, height / 2 - 60);
+  text("Just press and hold", x + 30, y + 40);
+  text("to start the game!", x + 100, y + 130);
   textSize(60);
   fill(205, 110, 10);
-  text("⬆ UP ⬆", width / 2 - 220, height / 2 - 90);
+  text("⬆ UP ⬆", x + 30, y + 100);
   textSize(12);
-  text(
-    "Land Carl's house on top of the Paradise Falls!",
-    width / 2 - 230,
-    height / 2 - 30
-  );
+  text("Land Carl's house on top of the Paradise Falls!", x + 20, y + 170);
 
   push();
   rotate(-0.2);
-  lunarLander(width / 2 - 320, height / 2 + 110, 0.5);
+  lunarLander(x - 80, y + 300, 0.5);
   pop();
-  pop();
+}
+
+function losingScreen(x, y) {
+  fill(0, 0, 0, 150);
+  rect(0, 0, width, height);
+
+  fill(255, 100, 0);
+  strokeWeight(5);
+  stroke(255, 0, 0);
+  rect(x, y, 300, 200);
+  noStroke();
+  textSize(20);
+  textFont("Futura");
+  fill(255, 255, 255);
+  text("You crashed the house!", 140, 180);
+  text("Press the SPACE key to restart.", 112, 210);
 }
 
 for (let i = 0; i < 5; i++) {
@@ -734,8 +745,8 @@ function draw() {
 
   lunarLander(houseX, houseY, houseScale);
 
-  if (startscreenActive) {
-    startscreen(100, 100);
+  if (startScreenActive) {
+    startScreen(100, 100);
     if (keyIsDown(38)) {
       isGameActive = true;
     }
@@ -744,9 +755,9 @@ function draw() {
   if (isGameActive) {
     houseX = houseX + houseSpeedX;
     houseY = houseY + houseSpeedY;
-    startscreenActive = false;
+    startScreenActive = false;
     console.log(isGameActive);
-    console.log(startscreenActive);
+    console.log(startScreenActive);
 
     if (keyIsDown(38)) {
       houseSpeedY = houseAcceleration + houseVelocity;
@@ -771,7 +782,15 @@ function draw() {
       houseY = 450;
       houseSpeedX = 0;
       houseSpeedY = 0;
-      startscreenActive = true;
+      losingScreenActive = true;
+    }
+  }
+
+  if (losingScreenActive) {
+    losingScreen(100, 100);
+    if (keyIsDown(32)) {
+      startScreenActive = true;
+      losingScreenActive = false;
     }
   }
 }
