@@ -16,6 +16,7 @@ let scaleClouds = [];
 let isGameActive = false;
 let startScreenActive = true;
 let losingScreenActive = false;
+let winningScreenActive = false;
 
 function setup() {
   createCanvas(500, 500);
@@ -726,6 +727,24 @@ function losingScreen(x, y) {
   text("Press the SPACE key to restart.", 112, 210);
 }
 
+function winningScreen(x, y) {
+  fill(0, 0, 0, 150);
+  rect(0, 0, width, height);
+
+  fill(100, 255, 0);
+  strokeWeight(5);
+  stroke(200, 255, 0);
+  rect(x, y, 300, 200);
+  noStroke();
+  textSize(20);
+  textFont("Futura");
+  fill(255, 255, 255);
+  text("You landed the house!", 144, 180);
+  textSize(18);
+
+  text("Press the SPACE key to do it again.", 108, 210);
+}
+
 for (let i = 0; i < 5; i++) {
   xCloud = Math.floor(Math.random() * width);
   yCloud = Math.floor((Math.random() * height) / 2);
@@ -791,6 +810,14 @@ function draw() {
     if (keyIsDown(32)) {
       startScreenActive = true;
       losingScreenActive = false;
+    }
+  }
+
+  if (winningScreenActive) {
+    winningScreen(100, 100);
+    if (keyIsDown(32)) {
+      startScreenActive = true;
+      winningScreenActive = false;
     }
   }
 }
