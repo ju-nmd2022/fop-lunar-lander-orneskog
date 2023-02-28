@@ -9,7 +9,6 @@ let houseSpeedY = 0;
 let houseRotation = 0;
 let houseVelocity = 0.05;
 let houseAcceleration = 0.1;
-let size = 1;
 let xClouds = [];
 let yClouds = [];
 let scaleClouds = [];
@@ -741,7 +740,6 @@ function winningScreen(x, y) {
   fill(255, 255, 255);
   text("You landed the house!", 144, 180);
   textSize(18);
-
   text("Press the SPACE key to do it again.", 108, 210);
 }
 
