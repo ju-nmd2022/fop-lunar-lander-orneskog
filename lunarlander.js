@@ -665,6 +665,7 @@ function scenery(x, y) {
   fill(255, 160, 60);
   rect(x, y + 450, width, 50);
   // Little mountain top
+  fill(215, 120, 20);
   beginShape();
   vertex(x + 350, y + 450);
   vertex(x + 343, y + 400);
@@ -674,6 +675,7 @@ function scenery(x, y) {
   endShape();
 
   // Landing mountain
+  fill(255, 160, 60);
   beginShape();
   vertex(x, y + 450);
   vertex(x, y + 400);
@@ -727,20 +729,25 @@ function losingScreen(x, y) {
 }
 
 function winningScreen(x, y) {
-  fill(0, 0, 0, 150);
-  rect(0, 0, width, height);
+  // fill(0, 0, 0, 100);
+  // rect(0, 0, width, height);
 
-  fill(100, 255, 0);
+  // fill(100, 255, 0);
   strokeWeight(5);
   stroke(200, 255, 0);
-  rect(x, y, 300, 200);
+  // rect(x, y, 300, 200);
   noStroke();
-  textSize(20);
+  textSize(30);
   textFont("Futura");
-  fill(255, 255, 255);
-  text("You landed the house!", 144, 180);
+  fill(0, 0, 0);
+  text("You did it! You landed the house!", x - 68, y + 138);
   textSize(18);
-  text("Press the SPACE key to do it again.", 108, 210);
+  text("Press the SPACE key to do it again.", x + 2, y + 168);
+  fill(0, 255, 0);
+  textSize(30);
+  text("You did it! You landed the house!", x - 70, y + 140);
+  textSize(18);
+  text("Press the SPACE key to do it again.", x, y + 170);
 }
 
 for (let i = 0; i < 5; i++) {
@@ -761,31 +768,30 @@ function draw() {
   scenery(0, 0);
 
   lunarLander(houseX, houseY, houseScale);
-
+  // startscreen
   if (startScreenActive) {
     startScreen(100, 100);
     if (keyIsDown(38)) {
+      startScreenActive = false;
       isGameActive = true;
     }
   }
-
+  // game starting if game screen is active
   if (isGameActive) {
     houseX = houseX + houseSpeedX;
     houseY = houseY + houseSpeedY;
-    startScreenActive = false;
-    console.log(isGameActive);
-    console.log(startScreenActive);
 
+    // moving house up
     if (keyIsDown(38)) {
-      houseSpeedY = houseAcceleration + houseVelocity;
-      houseVelocity = houseVelocity - houseAcceleration;
-    } else if (keyIsDown(40)) {
-      houseSpeedY = 20 + houseVelocity;
-      houseVelocity = houseVelocity + houseAcceleration;
-    } else {
-      houseSpeedY = houseSpeedY + 0.2;
-      houseVelocity = 0.05;
+      houseSpeedY = houseVelocity + 0.1;
+      houseVelocity = houseVelocity - 0.1;
     }
+    // house moving down when not clicking up
+    else {
+      houseSpeedY = houseSpeedY + 0.1;
+      houseVelocity = houseVelocity + 0.1;
+    }
+    // move house to left/right
     if (keyIsDown(37)) {
       houseSpeedX = -2;
     } else if (keyIsDown(39)) {
@@ -793,29 +799,51 @@ function draw() {
     } else {
       houseSpeedX = 0;
     }
-    if (houseY > 451) {
+    // losing if landing on ground, flying to high or crashing into the side of the mountain
+    if (houseY > 451 || houseY < -100 || (houseX < 220 && houseY > 220)) {
       isGameActive = false;
+      losingScreenActive = true;
+    }
+
+    if (houseX < 220 && houseY >= 200 && houseY <= 205) {
+      // winning if you land in a low speed
+      if (houseSpeedY < 1.2) {
+        isGameActive = false;
+        winningScreenActive = true;
+        // losing if speed is too high
+      } else {
+        isGameActive = false;
+        losingScreenActive = true;
+      }
+    }
+  }
+
+  // losing screen
+  if (losingScreenActive) {
+    losingScreen(100, 100);
+    if (keyIsDown(32)) {
+      losingScreenActive = false;
+      // resetting all values to start values
       houseX = 420;
       houseY = 450;
       houseSpeedX = 0;
       houseSpeedY = 0;
-      losingScreenActive = true;
-    }
-  }
-
-  if (losingScreenActive) {
-    losingScreen(100, 100);
-    if (keyIsDown(32)) {
+      houseVelocity = 0.05;
       startScreenActive = true;
-      losingScreenActive = false;
     }
   }
-
+  // If you land on top of the mountain in the right speed, you reach this winning page
   if (winningScreenActive) {
-    winningScreen(100, 100);
+    winningScreen(100, 150);
     if (keyIsDown(32)) {
       startScreenActive = true;
       winningScreenActive = false;
+      // resetting all values to start values
+      houseX = 420;
+      houseY = 450;
+      houseSpeedX = 0;
+      houseSpeedY = 0;
+      houseVelocity = 0.05;
     }
   }
 }
