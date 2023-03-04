@@ -18,6 +18,11 @@ let losingScreenActive = false;
 let winningScreenActive = false;
 
 function setup() {
+  var cnv = createCanvas(500, 500);
+  var cnvX = (windowWidth - width) / 2;
+  var cnvY = (windowHeight - height) / 2;
+  cnv.position(cnvX, cnvY);
+  frameRate(30);
   createCanvas(500, 500);
 }
 
@@ -729,13 +734,8 @@ function losingScreen(x, y) {
 }
 
 function winningScreen(x, y) {
-  // fill(0, 0, 0, 100);
-  // rect(0, 0, width, height);
-
-  // fill(100, 255, 0);
   strokeWeight(5);
   stroke(200, 255, 0);
-  // rect(x, y, 300, 200);
   noStroke();
   textSize(30);
   textFont("Futura");
@@ -749,10 +749,10 @@ function winningScreen(x, y) {
   textSize(18);
   text("Press the SPACE key to do it again.", x, y + 170);
 }
-
+// 5 random X, Y & Scale values stored in arrays for randomized clouds in the background
 for (let i = 0; i < 5; i++) {
-  xCloud = Math.floor(Math.random() * width);
-  yCloud = Math.floor((Math.random() * height) / 2);
+  xCloud = Math.floor(Math.random() * 500);
+  yCloud = Math.floor(Math.random() * 300);
   scaleCloud = Math.ceil(Math.random() * 2);
   xClouds.push(xCloud);
   yClouds.push(yCloud);
@@ -762,6 +762,7 @@ for (let i = 0; i < 5; i++) {
 function draw() {
   background(40, 150, 205);
 
+  // Randomized clouds drawn with previously set values in arrays
   for (let i = 0; i < xClouds.length; i++) {
     cloud(xClouds[i], yClouds[i], scaleClouds[i]);
   }
