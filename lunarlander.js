@@ -701,7 +701,7 @@ function startScreen(x, y) {
   noStroke();
   fill(60, 100, 150);
   textSize(20);
-  textFont("Futura");
+  textFont("Arial");
   text("Just press and hold", x + 30, y + 40);
   text("to start the game!", x + 100, y + 130);
   textSize(60);
@@ -726,7 +726,7 @@ function losingScreen(x, y) {
   rect(x, y, 300, 200);
   noStroke();
   textSize(20);
-  textFont("Futura");
+  textFont("Arial");
   fill(255, 255, 255);
   text("You crashed the house!", 140, 180);
   text("Press the SPACE key to restart.", 112, 210);
@@ -737,7 +737,7 @@ function winningScreen(x, y) {
   stroke(200, 255, 0);
   noStroke();
   textSize(30);
-  textFont("Futura");
+  textFont("Arial");
   fill(0, 0, 0);
   text("You did it! You landed the house!", x - 68, y + 138);
   textSize(18);
