@@ -736,17 +736,18 @@ function winningScreen(x, y) {
   strokeWeight(5);
   stroke(200, 255, 0);
   noStroke();
-  textSize(30);
+  textSize(27);
+  textStyle(BOLD);
   textFont("Arial");
   fill(0, 0, 0);
-  text("You did it! You landed the house!", x - 68, y + 138);
+  text("You did it! You landed the house!", x - 78, y + 138);
   textSize(18);
-  text("Press the SPACE key to do it again.", x + 2, y + 168);
+  text("Press the SPACE key to do it again.", x - 14, y + 168);
   fill(0, 255, 0);
-  textSize(30);
-  text("You did it! You landed the house!", x - 70, y + 140);
+  textSize(27);
+  text("You did it! You landed the house!", x - 80, y + 140);
   textSize(18);
-  text("Press the SPACE key to do it again.", x, y + 170);
+  text("Press the SPACE key to do it again.", x - 16, y + 170);
 }
 // 5 random X, Y & Scale values stored in arrays for randomized clouds in the background
 for (let i = 0; i < 5; i++) {
