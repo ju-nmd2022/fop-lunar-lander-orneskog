@@ -8,7 +8,6 @@ let houseSpeedX = 0;
 let houseSpeedY = 0;
 let houseRotation = 0;
 let houseVelocity = 0.05;
-let houseAcceleration = 0.1;
 let xClouds = [];
 let yClouds = [];
 let scaleClouds = [];
@@ -702,7 +701,7 @@ function startScreen(x, y) {
   noStroke();
   fill(60, 100, 150);
   textSize(20);
-  textFont("Futura");
+  textFont("Futura PT");
   text("Just press and hold", x + 30, y + 40);
   text("to start the game!", x + 100, y + 130);
   textSize(60);
