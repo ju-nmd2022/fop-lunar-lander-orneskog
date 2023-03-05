@@ -784,19 +784,19 @@ function draw() {
 
     // moving house up
     if (keyIsDown(38)) {
-      houseSpeedY = houseVelocity + 0.1;
-      houseVelocity = houseVelocity - 0.1;
+      houseSpeedY = houseVelocity;
+      houseVelocity = houseVelocity - 0.07;
     }
     // house moving down when not clicking up
     else {
-      houseSpeedY = houseSpeedY + 0.1;
-      houseVelocity = houseVelocity + 0.1;
+      houseSpeedY = houseVelocity;
+      houseVelocity = houseVelocity + 0.07;
     }
     // move house to left/right
     if (keyIsDown(37)) {
-      houseSpeedX = -2;
+      houseSpeedX = -0.7;
     } else if (keyIsDown(39)) {
-      houseSpeedX = 2;
+      houseSpeedX = 0.7;
     } else {
       houseSpeedX = 0;
     }
