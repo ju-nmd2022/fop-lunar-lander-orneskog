@@ -725,11 +725,11 @@ function losingScreen(x, y) {
   stroke(255, 0, 0);
   rect(x, y, 300, 200);
   noStroke();
-  textSize(20);
+  textSize(18);
   textFont("Arial");
   fill(255, 255, 255);
-  text("You crashed the house!", 140, 180);
-  text("Press the SPACE key to restart.", 112, 210);
+  text("You crashed the house!", 154, 180);
+  text("Press the SPACE key to restart.", 124, 210);
 }
 
 function winningScreen(x, y) {
