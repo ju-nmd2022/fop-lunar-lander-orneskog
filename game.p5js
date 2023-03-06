@@ -1,0 +1,32 @@
+[
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "# Welcome to your p5.js Notebook"
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "<h1>Flappy UFO Game</h1>\n\nDraw the ufo\ndraw the background\n"
+  },
+  {
+    "kind": 2,
+    "language": "javascript",
+    "value": "function setup() {\n  window.createCanvas(600, 300);\n  background(255,255,255);\n}"
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "To draw the UFO, I want to have af function wit ha x and y coordinate so i can control the positions of it"
+  },
+  {
+    "kind": 2,
+    "language": "javascript",
+    "value": "function ufo(x, y){\n    ellipse(x, y, 60, 30);\n}\n\nfunction draw(){\n    ufo(100,100);\n}"
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": ""
+  }
+]
